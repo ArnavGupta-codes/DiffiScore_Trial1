@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+.bungee-regular {
+  font-family: "Bungee", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+/*
+// <weight>: Use a value from 200 to 800
+// <uniquifier>: Use a unique and descriptive class name
+
+.plus-jakarta-sans-<uniquifier> {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+ */
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(238, 244, 249);
+    /* display: relative; */
+    box-sizing: border-box;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    align-items: center;
+    /* padding: 20px;  */
+    align-items: center; 
+    /* gap: 20px; */
+    background-color: rgb(6, 7, 49);
+    height : 20vh;
+    width: 100%;
+}
+
+h1{
+    font-family: "Coiny", system-ui;
+    color: white;
+    font-size: 40px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#logo{
+    margin: 16px 30px;
+    border-radius: 25%;
+      border: 5px solid rgb(6, 7, 49);
+      object-fit: cover; /* Ensures the image scales properly */
+    /* width: 100vw;
+    height: 90vh; */
+}
+/* 
+.outer {
+    display:flex;
+    justify-content: space-around;
+    height: 80vh;
+    width: 100vw;
+}
+
+.upload {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    width: 50vw;
+    background-color: red;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+} */
+
+/* Center the outer container */
+.outer {
+  display: flex;
+  /* justify-content: space-around; Centers horizontally */
+  
+  gap: 10vw;
+  align-items: center; /* Centers vertically */
+  height: 80vh;
+  width: 70vw;
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.upload, .search {
+  width: 30%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  text-align: center; /* Centers content inside */
+  padding: 20px;
+  border: 2px solid #ccc; /* Optional: Border for visibility */
+  border-radius: 10px; /* Optional: Rounded corners */
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Optional: Shadow effect */
+  background-color: #f9f9f9; /* Light gray background */
+  align-items: center;
+  /* justify-content: space-around; */
+  gap: 20%;
+  align-items: center;
+}
+
+/* Style for buttons */
+.Upload, .Search-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius:100%;
+  cursor: pointer;
+  background-color: #007bff; /* Blue color */
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  border: none;
+}
+
+.Upload:hover, .Search-btn:hover {
+  background-color: #0056b3;
+}
+
+.UploadPage, .SearchPage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.form {
+  display: flex;
+  align-items: center;
+  background-color: rgb(216, 173, 18);
+   /* #FFD43B */
+  padding: 15px;
+  border-radius: 10px;
+  flex-wrap: wrap; 
+  justify-content: center;
+  width: 90%;
+  max-width: 700px;
+  margin: 200px;
+}
+.search_bar {
+  width: 100%;
+  max-width: 600px;
+  height: 60px;
+  padding: 10px;
+  font-size: 24px;
+  border-radius: 15px;
+  border: solid black;
+}
+
+
+.submit_button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid black;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-icon {
+  color: black; /* Ensure it contrasts with the background */
+  font-size: 20px; /* Adjust size as needed */
+  margin-left: 10px; /* Add spacing if necessary */
+}
