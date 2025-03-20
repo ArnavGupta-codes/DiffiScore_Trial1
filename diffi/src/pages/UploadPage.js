@@ -1,14 +1,18 @@
 import React from 'react'
+import ImageDropArea from "../components/ImageDropArea";
 
 const UploadPage = () => {
     return(
         <div className='UploadPage'>
             <div className='Intro'>
-                <h3 className="introtext">Upload the Question<br />you want to add</h3>
+                <h1 className='Intro'>Upload Files</h1>
             </div>
-            <div className='Main_section_upload'>
-                <button>Select Image to Upload</button>
-                <button>Upload</button>
+            <div className='main_section_upload'>
+                {/* <button class='selectbutton'>Select Image to Upload</button> */}
+                <div className="draganddrop">
+                <ImageDropArea />
+                </div>
+                <button class='uploadbtn Intro'>Upload</button>
             </div>
         </div>
     )
