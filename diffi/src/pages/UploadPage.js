@@ -19,7 +19,7 @@ const uploadFile = async (file) => {
   };
   
   // Example usage: Attach this function to an input field
-  <input type="file" onChange={(e) => uploadFile(e.target.files[0])} />
+//   <input type="file" onChange={(e) => uploadFile(e.target.files[0])} />
   
 
 const UploadPage = () => {
