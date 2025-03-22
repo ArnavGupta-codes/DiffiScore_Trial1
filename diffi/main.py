@@ -80,8 +80,14 @@ from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 import os
 import shutil
 import uuid
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
+
+from fastapi.staticfiles import StaticFiles
+
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 
 app.add_middleware(
     CORSMiddleware,
@@ -133,6 +139,7 @@ async def upload_image(file: UploadFile = File(...), tag: str = Form(...)):  # U
     return {"message": "Image uploaded successfully", "image_path": file_path, "tag": tag}
 
 @app.get("/search/")
+
 async def search_images(query: str = Query(...), top_k: int = 2):
     """Retrieve images similar to a text query."""
     query_vector = embeddings.embed_query(query)  # Correct embedding method for a query

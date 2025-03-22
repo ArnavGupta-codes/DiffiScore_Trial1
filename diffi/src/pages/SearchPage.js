@@ -1,41 +1,16 @@
-// import React from 'react'
-
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faSearch } from "@fortawesome/free-solid-svg-icons";
-// import { useState } from "react";
-
-// const SearchPage = () => {
-//     return (
-//       <div className="SearchPage">
-//         <form class="form">
-//           <input
-//             class="search_bar"
-//             id="Topic"
-//             placeholder="Enter Topic..."
-//           ></input>
-//           <button class="submit_button">
-//             <FontAwesomeIcon icon={faSearch} className="search-icon" />
-//           </button>
-//         </form>
-//       </div>
-//     );
-// }
-
-// export default SearchPage
-////////////////////////////////////////////////////////////////////////////////////////////
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const SearchPage = () => {
   const [query, setQuery] = useState("");
+  const [topK, setTopK] = useState(); // Default value of top_k
   const [results, setResults] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://127.0.0.1:8000/search/?query=${query}&top_k=2`);
+      const response = await fetch(`http://127.0.0.1:8000/search/?query=${query}&top_k=${topK}`);
       const data = await response.json();
       setResults(data.results);
     } catch (error) {
@@ -53,6 +28,12 @@ const SearchPage = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+        <input
+          type="number"
+          placeholder="No. of questions"
+          value={topK}
+          onChange={(e) => setTopK(e.target.value)}
+        />
         <button className="submit_button" type="submit">
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
         </button>
@@ -63,7 +44,7 @@ const SearchPage = () => {
           results.map((result, index) => (
             <div key={index} className="result-item">
               <p>Tag: {result.tag}</p>
-              <img src={`http://127.0.0.1:8000/${result.image_path}`} alt={result.tag} width="100" />
+              <img src={`http://127.0.0.1:8000/uploads/${result.image_path.split('/').pop()}`} alt={result.tag} width="100" />
             </div>
           ))
         ) : (
