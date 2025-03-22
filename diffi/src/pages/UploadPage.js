@@ -58,8 +58,8 @@ const UploadPage = () => {
             {/* File Selection */}
             <input ImageDropArea type="file" onChange={handleFileChange} />
 
-            {/* Drag & Drop Component
-            <ImageDropArea onFileSelect={setSelectedFile} /> */}
+            
+            {/* <ImageDropArea onFileSelect={setSelectedFile} /> */}
 
             {/* Upload Button */}
             <button className="uploadbtn" onClick={handleUpload}>Upload</button>
