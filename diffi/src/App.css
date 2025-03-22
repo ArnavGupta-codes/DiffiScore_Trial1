@@ -135,34 +135,39 @@ h1{
   justify-content: center;
 }
 
-
 .form {
   display: flex;
   align-items: center;
   background-color: rgb(216, 173, 18);
-   /* #FFD43B */
   padding: 15px;
-  border-radius: 100px;
-  flex-wrap: wrap; 
+  border-radius: 50px;
+  flex-wrap: wrap;
   justify-content: center;
   width: 90%;
-  max-width: 700px;
-  margin: 200px;
+  max-width: 600px;
+  margin: 5%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 .search_bar {
   width: 100%;
-  max-width: 600px;
-  height: 60px;
-  padding: 10px;
-  font-size: 24px;
-  border-radius: 100px;
+  max-width: 500px;
+  height: 50px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 25px;
   border: none;
+  outline: none;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
+.search_bar:focus {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 
 .submit_button {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: white;
   margin-left: 10px;
@@ -170,19 +175,31 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid black;
+  border: none;
+  margin: 1%;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.submit_button {
-  background-color: rgb(216, 173, 18);
-  border: none;
+.submit_button:hover {
+  background-color: rgb(200, 150, 10);
+  transform: scale(1.1);
 }
 
 .search-icon {
-  color: white; /* Ensure it contrasts with the background */
-  font-size: 40px; /* Adjust size as needed */
-  margin: auto;
+  color: black;
+  font-size: 24px;
+}
+
+.NoQ{
+  width: 100%;
+  max-width: 50px;
+  height: 20px;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .Intro{
@@ -210,9 +227,6 @@ h1{
   gap: 1rem;
 }
 
-/* drag and drop */
-
-/* Container for the dropzone */
 .dropzone-container {
     display: flex;
     flex-direction: column;
@@ -223,7 +237,6 @@ h1{
     max-width: 600px;
 }
 
-/* Drag and drop area */
 .drag-and-drop {
     display: flex;
     flex-direction: column;
@@ -251,13 +264,12 @@ h1{
     font-size: 48px;
 }
 
-/* Drag text */
+
 .drag-text {
     font-size: 18px;
     color: #333;
 }
 
-/* Preview container */
 .image-preview-container {
     display: flex;
     flex-wrap: wrap;
@@ -265,8 +277,6 @@ h1{
     margin-top: 20px;
     gap: 10px;
 }
-
-/* Individual preview */
 .image-preview {
     position: relative;
     width: 80px;
@@ -281,14 +291,13 @@ h1{
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Image preview */
 .preview-img {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
 }
 
-/* Remove button */
+
 .remove-btn {
     position: absolute;
     top: -5px;
@@ -311,7 +320,6 @@ h1{
     background-color: #ff2c2c;
 }
 
-/* General styling for the upload page */
 .UploadPage {
     display: flex;
     flex-direction: column;
@@ -320,14 +328,11 @@ h1{
     font-family: Arial, sans-serif;
 }
 
-/* Styling for the header */
 .Intro {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
 }
-
-/* Tag input field */
 .tag-input {
     width: 80%;
     max-width: 400px;
@@ -345,7 +350,7 @@ h1{
     box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
 }
 
-/* Upload button */
+
 .uploadbtn {
     background-color: #007acc;
     color: white;
@@ -362,15 +367,61 @@ h1{
     box-shadow: 0 2px 5px rgba(0, 95, 163, 0.3);
 }
 
-/* Message display */
 .message {
     font-size: 14px;
     margin-top: 10px;
     color: #333;
 }
 
-
-
 .goToHomePage:hover{
   cursor: pointer;
+}
+
+
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 96px 24px 48px;
+  background: #f3f1fe;
+}
+
+.results {
+  width: 350px;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.1);
+}
+
+.results figure {
+  width: 120px;
+  height: 120px;
+  margin-top: -60px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.results figure::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: inherit;
+  border: 1rem solid #f3f1fe;
+  box-shadow: 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.results figure img {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
 }

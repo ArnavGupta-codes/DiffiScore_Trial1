@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import ImageDropArea from "../components/ImageDropArea";
 
@@ -15,9 +16,11 @@ const uploadFile = async (file, tag, setMessage) => {
     const data = await response.json();
     console.log("Upload Success:", data);
     setMessage(`✅ Image uploaded successfully! Tag: ${tag}`);
+    return true;
   } catch (error) {
     console.error("Error uploading file:", error);
     setMessage("❌ Upload failed. Please try again.");
+    return false;
   }
 };
 
@@ -25,10 +28,16 @@ const UploadPage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [tag, setTag] = useState("");
   const [message, setMessage] = useState("");
+  const [resetImages, setResetImages] = useState(false); // State to reset images
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (selectedFile && tag) {
-      uploadFile(selectedFile, tag, setMessage);
+      const success = await uploadFile(selectedFile, tag, setMessage);
+      if (success) {
+        setTag(""); // Reset tag
+        setSelectedFile(null);
+        setResetImages(true);
+      }
     } else {
       setMessage("⚠️ Please select a file and enter a tag.");
     }
@@ -36,9 +45,10 @@ const UploadPage = () => {
 
   return (
     <div className="UploadPage">
+      {message && <p className="message">{message}</p>}
+
       <h1 className="Intro">Upload Files</h1>
 
-      {/* Input for Tag */}
       <input
         type="text"
         placeholder="Enter tag"
@@ -46,17 +56,15 @@ const UploadPage = () => {
         onChange={(e) => setTag(e.target.value)}
         className="tag-input"
       />
+      <ImageDropArea
+        onFileSelect={setSelectedFile}
+        reset={resetImages}
+        onResetComplete={() => setResetImages(false)} // Reset the reset flag
+      />
 
-      {/* Drag & Drop Component */}
-      <ImageDropArea onFileSelect={setSelectedFile} />
-
-      {/* Upload Button */}
       <button className="uploadbtn" onClick={handleUpload}>
         Upload
       </button>
-
-      {/* Message Display */}
-      {message && <p className="message">{message}</p>}
     </div>
   );
 };

@@ -30,6 +30,7 @@ const SearchPage = () => {
         />
         <input
           type="number"
+          className= "NoQ"
           placeholder="No. of questions"
           value={topK}
           onChange={(e) => setTopK(e.target.value)}
