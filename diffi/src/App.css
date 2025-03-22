@@ -212,92 +212,163 @@ h1{
 
 /* drag and drop */
 
-
- .drag-and-drop {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 40%;
-  height: 250px;
-  border: 4px dashed #ccc;
-  border-radius: 16px;
-  background-color: #f9f9f9;
-  transition: all 0.3s ease;
+/* Container for the dropzone */
+.dropzone-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
 }
 
-.drag-and-drop:hover {
-  border-color: #999;
-  background-color: #f2f2f2;
+/* Drag and drop area */
+.drag-and-drop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+    border: 3px dashed #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+    color: #666;
+    cursor: pointer;
 }
 
 .drag-and-drop.drag-active {
-  border-color: #4a90e2;
-  background-color: #eaf4fc;
+    background-color: #e3f7ff;
+    border-color: #007acc;
 }
 
 .upload-icon {
-  width: 64px;
-  height: 64px;
-  color: #666;
-  margin-bottom: 16px;
+    margin-bottom: 10px;
+    color: #007acc;
+    font-size: 48px;
 }
 
+/* Drag text */
 .drag-text {
-  font-size: 16px;
-  color: #555;
-  text-align: center;
+    font-size: 18px;
+    color: #333;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+/* Preview container */
+.image-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
 }
 
-.uploaded-files-container {
-  margin-top: 20px;
+/* Individual preview */
+.image-preview {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.uploaded-files {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+/* Image preview */
+.preview-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
-.file-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  background-color: #fff;
+/* Remove button */
+.remove-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff5c5c;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
-.file-preview {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
+.remove-btn:hover {
+    background-color: #ff2c2c;
 }
 
-.submit-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #4a90e2;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+/* General styling for the upload page */
+.UploadPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-.submit-button:hover {
-  background-color: #357abd;
+/* Styling for the header */
+.Intro {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
+
+/* Tag input field */
+.tag-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tag-input:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
+}
+
+/* Upload button */
+.uploadbtn {
+    background-color: #007acc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.uploadbtn:hover {
+    background-color: #005fa3;
+    box-shadow: 0 2px 5px rgba(0, 95, 163, 0.3);
+}
+
+/* Message display */
+.message {
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
+}
+
 
 
 .goToHomePage:hover{
