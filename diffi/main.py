@@ -166,10 +166,11 @@
 # if __name__ == "__main__":
 #     import uvicorn
 #     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+
+
 from fastapi import FastAPI, UploadFile, File, Form, Query
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from langchain_community.vectorstores.faiss import FAISS
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 import os
@@ -180,12 +181,12 @@ app = FastAPI()
 
 # Define upload folder path
 # UPLOAD_FOLDER = "backend/uploads"
-UPLOAD_FOLDER = "public/backend/uploads"
+UPLOAD_FOLDER = "backend/uploads"
 
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)  # Ensure the directory exists
 
 # Correctly mount the uploads folder for serving images
-app.mount("/uploads", StaticFiles(directory=UPLOAD_FOLDER, html=True), name="uploads")
+# app.mount("/backend/uploads/", StaticFiles(directory=UPLOAD_FOLDER), name="uploads")
 
 # Enable CORS
 app.add_middleware(
@@ -210,7 +211,16 @@ else:
 @app.get("/")
 async def home():
     """Root endpoint to check if API is running."""
-    return {"message": "Welcome to the Image Search API!"}
+    return {"message": "Welcome to the Image Search API!!!"}
+
+@app.get("/backend/uploads/{filename}", response_class=FileResponse, summary="Serve an uploaded image", description="Retrieve and serve an image stored in the backend/uploads folder")
+def serve_image(filename: str):
+    """Serve the requested image."""
+    try:
+        file_path = os.path.join(UPLOAD_FOLDER, filename)
+        return FileResponse(file_path)
+    except FileNotFoundError:
+        return JSONResponse(content={"error": "File not found"}, status_code=404)
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...), tag: str = Form(...)):
@@ -251,7 +261,7 @@ async def search_images(query: str = Query(...), top_k: int = 2):
     retrieved_metadata = [
         {
             "tag": r.metadata["tag"],
-            "image_path": f"/uploads/{r.metadata['image_path']}"  # Ensure correct path
+            "image_path": f"/backend/uploads/{os.path.basename(r.metadata['image_path'])}"  # Ensure correct path
         }
         for r in results
     ]

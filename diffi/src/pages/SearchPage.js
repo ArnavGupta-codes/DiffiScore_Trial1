@@ -43,9 +43,7 @@ const SearchPage = () => {
         {results.length > 0 ? (
           results.map((result, index) => (
             <div key={index} className="result-item">
-              <p>Tag: {result.tag}</p>
-              {/* <img src={`http://127.0.0.1:8000/uploads/${result.image_path.split('/').pop()}`} alt={result.tag} width="100" /> */}
-              <img src={`http://127.0.0.1:8000/uploads/${result.image_path.split('\\').pop()}`} alt={result.tag} width="100" />
+              <img src={`http://127.0.0.1:8000${result.image_path}`} alt={result.tag} width="100" />
             </div>
           ))
         ) : (
