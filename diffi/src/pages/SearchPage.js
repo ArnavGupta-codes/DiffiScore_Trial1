@@ -1,20 +1,37 @@
+
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { downloadImage } from "../components/downloadImage";
 
 const SearchPage = () => {
   const [query, setQuery] = useState("");
-  const [topK, setTopK] = useState(); // Default value of top_k
+  const [topK, setTopK] = useState("");
   const [results, setResults] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://127.0.0.1:8000/search/?query=${query}&top_k=${topK}`);
+      const response = await fetch(
+        `http://127.0.0.1:8000/search/?query=${query}&top_k=${topK}`
+      );
       const data = await response.json();
       setResults(data.results);
     } catch (error) {
       console.error("Error fetching search results:", error);
+    }
+  };
+
+  const handleDownload = async (imagePath, tag) => {
+    const filename = imagePath.split("/").pop();
+    const fullUrl = `http://127.0.0.1:8000${imagePath}?t=${new Date().getTime()}`;
+    console.log(`Attempting to download: ${fullUrl} as ${filename}`);
+    
+    try {
+      await downloadImage(fullUrl, filename);
+    } catch (error) {
+      console.error("Error in download:", error);
+      alert("Failed to download image. Please try again.");
     }
   };
 
@@ -28,23 +45,36 @@ const SearchPage = () => {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <input
-          type="number"
-          className= "NoQ"
-          placeholder="No. of questions"
-          value={topK}
-          onChange={(e) => setTopK(e.target.value)}
-        />
-        <button className="submit_button" type="submit">
-          <FontAwesomeIcon icon={faSearch} className="search-icon" />
-        </button>
+        <div className="inner-search">
+          <input
+            type="number"
+            className="NoQ"
+            placeholder="No. of questions"
+            value={topK}
+            onChange={(e) => setTopK(e.target.value)}
+          />
+          <button className="submit_button" type="submit">
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+          </button>
+        </div>
       </form>
 
-      <div className="results">
+      <div className="outer-img-container">
         {results.length > 0 ? (
           results.map((result, index) => (
-            <div key={index} className="result-item">
-              <img src={`http://127.0.0.1:8000${result.image_path}`} alt={result.tag} width="100" />
+            <div key={index} className="img-card">
+              <div className="img-wrapper">
+                <img
+                  src={`http://127.0.0.1:8000${result.image_path}?t=${new Date().getTime()}`}
+                  alt={result.tag}
+                />
+                <button
+                  onClick={() => handleDownload(result.image_path, result.tag)}
+                  className="download-btn"
+                >
+                  Download Image
+                </button>
+              </div>
             </div>
           ))
         ) : (
@@ -56,4 +86,3 @@ const SearchPage = () => {
 };
 
 export default SearchPage;
-
