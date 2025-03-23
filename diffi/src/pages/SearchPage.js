@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +7,7 @@ const SearchPage = () => {
   const [query, setQuery] = useState("");
   const [topK, setTopK] = useState("");
   const [results, setResults] = useState([]);
+  const [expandedImage, setExpandedImage] = useState(null);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -22,17 +22,24 @@ const SearchPage = () => {
     }
   };
 
-  const handleDownload = async (imagePath, tag) => {
+  const handleDownload = async (imagePath) => {
     const filename = imagePath.split("/").pop();
     const fullUrl = `http://127.0.0.1:8000${imagePath}?t=${new Date().getTime()}`;
-    console.log(`Attempting to download: ${fullUrl} as ${filename}`);
-    
+
     try {
       await downloadImage(fullUrl, filename);
     } catch (error) {
       console.error("Error in download:", error);
       alert("Failed to download image. Please try again.");
     }
+  };
+
+  const openExpandedView = (image) => {
+    setExpandedImage(image);
+  };
+
+  const closeExpandedView = () => {
+    setExpandedImage(null);
   };
 
   return (
@@ -62,14 +69,17 @@ const SearchPage = () => {
       <div className="outer-img-container">
         {results.length > 0 ? (
           results.map((result, index) => (
-            <div key={index} className="img-card">
+            <div key={index} className="img-card" onClick={() => openExpandedView(result)}>
               <div className="img-wrapper">
                 <img
                   src={`http://127.0.0.1:8000${result.image_path}?t=${new Date().getTime()}`}
                   alt={result.tag}
                 />
                 <button
-                  onClick={() => handleDownload(result.image_path, result.tag)}
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent image from expanding when clicking button
+                    handleDownload(result.image_path);
+                  }}
                   className="download-btn"
                 >
                   Download Image
@@ -81,6 +91,19 @@ const SearchPage = () => {
           <p>No results found</p>
         )}
       </div>
+
+      {/* Expanded Image Modal with Close Button */}
+      {expandedImage && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-btn" onClick={closeExpandedView}>✖</button>
+            <img
+              src={`http://127.0.0.1:8000${expandedImage.image_path}?t=${new Date().getTime()}`}
+              alt={expandedImage.tag}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
