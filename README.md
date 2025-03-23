@@ -61,72 +61,30 @@ Welcome to **Diffiscore**, a powerful platform for uploading, storing, and searc
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/ArnavGupta-codes/DiffiScore-Trial-2.git
+   git clone https://github.com/ArnavGupta-codes/DiffiScore_Trial1.git
    ```
 2. **Create and activate a virtual environment:**
    ```bash
    python -m venv .venv
    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
    ```
-3. **Install dependencies:**
+3. **Install dependencies:(Same as the one in the previous link)**
    ```bash
    pip install -r requirements.txt
    ```
 4. **Run the backend server:**
    ```bash
-   cd backend
+   cd diffi
    uvicorn main:app --reload
    ```
 5. **Start the frontend application:(In case of frontend error: Module not found: Error: Can't resolve 'framer-motion', then npm install framer-motion and same method for other components)**
    ```bash
-   cd ../frontend
    npm start
    ```
 6. **Open the website and start using DiffiScore!**
 
 ---
 
-## 📂 Directory Structure
-
-```
-DiffiScore/
-├── backend/
-│   ├── __pycache__/
-│   ├── backend/
-│   │   ├── faiss_index/
-│   │   └── uploads/
-│   ├── main.py
-│   └── requirements.txt
-├── frontend/
-│   ├── node_modules/
-│   ├── public/
-│   │   ├── images/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   │   ├── downloadImage.js
-│   │   │   ├── ImageDropArea.js
-│   │   │   ├── logout.js
-│   │   │   ├── Navbar.js
-│   │   │   ├── Search.js
-│   │   │   └── Upload.js
-│   │   ├── pages/
-│   │   │   ├── HomePage.js
-│   │   │   ├── SearchPage.js
-│   │   │   └── UploadPage.js
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   ├── App.test.js
-│   │   ├── index.css
-│   │   └── index.js
-│   ├── .gitignore
-│   ├── package-lock.json
-│   ├── package.json
-│   └── README.md
-```
-
----
 
 ## 📚 References
 
