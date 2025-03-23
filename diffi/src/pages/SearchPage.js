@@ -94,10 +94,10 @@ const SearchPage = () => {
 
       {/* Expanded Image Modal with Close Button */}
       {expandedImage && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={closeExpandedView}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={closeExpandedView}>✖</button>
-            <img
+            <img className="image-expanded"
               src={`http://127.0.0.1:8000${expandedImage.image_path}?t=${new Date().getTime()}`}
               alt={expandedImage.tag}
             />
